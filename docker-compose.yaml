@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+    database:
+      image: todo-sqlserver
+      build:
+        context: .
+        dockerfile: ./BancoDeDados/Dockerfile
+      ports:
+        - "1433:1433"
+
+    api:
+      image: backend
+      restart: always
+      build: ./ToDo/
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Docker
+      ports:
+        - "3000:80"
+      depends_on:
+        - database

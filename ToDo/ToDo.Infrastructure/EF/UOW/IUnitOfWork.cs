@@ -5,6 +5,5 @@ namespace ToDo.Infrastructure.EF.UOW
     public interface IUnitOfWork
     {
         Task SaveAsync();
-        //Task CommitAsyc();
     }
 }

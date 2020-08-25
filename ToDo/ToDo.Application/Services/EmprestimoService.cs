@@ -29,7 +29,6 @@ namespace ToDo.Application.Services
             var possueEmprestimosAtrasados = await _emprestimoRepository.PossuiEmprestimoAtrasadoPorUsuarioAsync(usuarioId);
             if (possueEmprestimosAtrasados) throw new EmprestimoAtrasadoException();
 
-
             var qtdEmprestimosAtivos = await _emprestimoRepository.GetEmprestimosAtivosPorUsuarioAsync(usuarioId);
             if (qtdEmprestimosAtivos >= 2) throw new LimiteEmprestimoException();
 
@@ -69,6 +68,6 @@ namespace ToDo.Application.Services
         {
             return await _emprestimoRepository.GetByAsync(id);
         }
-        
+
     }
 }

@@ -26,13 +26,27 @@ Infelizmente não consegui implementar a tempo o frontend, a construção da api
 
 
 ## Funcionalidades
-Obs: As principais funcionalidades da aplicação são: 
+As principais funcionalidades da aplicação são: 
 - Gerenciar empréstimos de livros.
+    - Criar Empréstimo
+    - Encerrar Empréstimo
+    
 - Gerenciar  usuário.
+    - Incluir, alterar e inativar.
+    
 - Gerenciar livro, autor e genero.
-- Gerenciar instiuição de ensino.
+    - Incluir, alterar e inativar.
 
-## Implementações à fazer
+- Gerenciar instiuição de ensino.
+    - Incluir, alterar e inativar
+
+## Regras Aplicadas
+- Um usuário só poderá emprestar no máximo 2 livros
+- Um empréstimo fica limitado a 30 dias.
+- Se houver um empréstimo em atraso, o usuário fica impossibilitado de fazer novos empréstimos.
+
+
+## Implementações Futuras
 
 ### Funções
 - Gerenciar reservas(Agendar, reagendar, cancelar reserva)

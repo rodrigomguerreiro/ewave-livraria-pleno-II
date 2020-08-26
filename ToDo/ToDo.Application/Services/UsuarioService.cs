@@ -47,7 +47,7 @@ namespace ToDo.Application.Services
             await _userRepository.CreateAsync(usuario);
         }
 
-        public async Task AtualizarAsync(Guid aggregateId, int instituicaoEnsinoId, string nome, string cpf, string telefone, string email)
+        public async Task AtualizarAsync(Guid aggregateId, int instituicaoEnsinoId, string nome, string cpf, string telefone, string email, bool ativo)
         {
             if (aggregateId == Guid.Empty) throw new ArgumentNullException(nameof(aggregateId));
             if (instituicaoEnsinoId.IsLessZero()) throw new ArgumentNullException(nameof(instituicaoEnsinoId));
@@ -66,6 +66,7 @@ namespace ToDo.Application.Services
             usuario.Cpf = cpf;
             usuario.Telefone = telefone;
             usuario.Email = email;
+            usuario.Ativo = ativo;
             usuario.InstituicaoEnsinoId = instituicaoEnsinoId;
 
             await _userRepository.UpdateAsync(usuario);

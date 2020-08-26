@@ -7,7 +7,7 @@ namespace ToDo.Domain.Services
 {
     public interface ISituacaoLivroService
     {
-        Task CriarAsync(Guid aggregateId, string descricao, bool ativo);
+        Task CriarAsync(Guid aggregateId, string descricao);
 
         Task AtualizarAsync(Guid aggregateId, string descricao, bool ativo);
 

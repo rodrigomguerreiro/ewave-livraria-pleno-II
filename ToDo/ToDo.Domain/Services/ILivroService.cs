@@ -7,7 +7,7 @@ namespace ToDo.Domain.Services
 {
     public interface ILivroService
     {
-        Task CriarAsync(Guid aggregateId, string titulo, string sinopse, string capa, int autorId, int generoId, int situacaoLivroId, bool ativo);
+        Task CriarAsync(Guid aggregateId, string titulo, string sinopse, string capa, int autorId, int generoId, int situacaoLivroId);
 
         Task AtualizarAsync(Guid aggregateId, string titulo, string sinopse, string capa, int autorId, int generoId, int situacaoLivroId, bool ativo);
 

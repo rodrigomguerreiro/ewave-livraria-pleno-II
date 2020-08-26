@@ -17,7 +17,7 @@ namespace ToDo.Application.Services
             _livroRepository = livroRespository;
         }
 
-        public async Task CriarAsync(Guid aggregateId, string titulo, string sinopse, string capa, int autorId, int generoId, int situacaoLivroId, bool ativo)
+        public async Task CriarAsync(Guid aggregateId, string titulo, string sinopse, string capa, int autorId, int generoId, int situacaoLivroId)
         {
             if (aggregateId == Guid.Empty) throw new ArgumentNullException(nameof(aggregateId));
             if (titulo.IsNull()) throw new ArgumentNullException(nameof(titulo));

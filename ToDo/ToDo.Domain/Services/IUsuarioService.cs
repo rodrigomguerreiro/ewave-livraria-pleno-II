@@ -9,7 +9,7 @@ namespace ToDo.Domain.Services
     {
         Task CriarAsync(Guid aggregateId, int instituicaoEnsinoId, string nome, string cpf, string telefone, string email);
 
-        Task AtualizarAsync(Guid aggregateId, int instituicaoEnsinoId, string nome, string cpf, string telefone, string email);
+        Task AtualizarAsync(Guid aggregateId, int instituicaoEnsinoId, string nome, string cpf, string telefone, string email, bool ativo);
 
         Task<IEnumerable<Usuario>> ListAll();
         Task<Usuario> ObterPorAsync(int id);

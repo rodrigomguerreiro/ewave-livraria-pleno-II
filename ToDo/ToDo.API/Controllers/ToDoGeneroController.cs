@@ -36,7 +36,7 @@ namespace ToDo.API.Controllers
         public async Task CriarUsuarioAsync([FromBody] GeneroDto dto)
         {
             var aggregateId = Guid.NewGuid();
-            await _generoService.CriarAsync(aggregateId, dto.Descricao, dto.Ativo);
+            await _generoService.CriarAsync(aggregateId, dto.Descricao);
 
             await UnitOfWork.SaveAsync();
         }

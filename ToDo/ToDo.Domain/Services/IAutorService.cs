@@ -7,7 +7,7 @@ namespace ToDo.Domain.Services
 {
     public interface IAutorService
     {
-        Task CriarAsync(Guid aggregateId, string nome, bool ativo);
+        Task CriarAsync(Guid aggregateId, string nome);
 
         Task AtualizarAsync(Guid aggregateId, string nome, bool ativo);
 

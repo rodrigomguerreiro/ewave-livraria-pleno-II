@@ -17,7 +17,7 @@ namespace ToDo.Application.Services
             _generoRepository = generoRespository;
         }
 
-        public async Task CriarAsync(Guid aggregateId, string descricao, bool ativo)
+        public async Task CriarAsync(Guid aggregateId, string descricao)
         {
             if (aggregateId == Guid.Empty) throw new ArgumentNullException(nameof(aggregateId));
             if (descricao.IsNull()) throw new ArgumentNullException(nameof(descricao));

@@ -7,7 +7,7 @@ namespace ToDo.Domain.Services
 {
     public interface IInstituicaoEnsinoService
     {
-        Task CriarAsync(Guid aggregateId, string nome, string cnpj, string telefone, string logradouro, int numero, string bairro, string complemento, bool ativo);
+        Task CriarAsync(Guid aggregateId, string nome, string cnpj, string telefone, string logradouro, int numero, string bairro, string complemento);
 
         Task AtualizarAsync(Guid aggregateId, string nome, string cnpj, string telefone, string logradouro, int numero, string bairro, string complemento, bool ativo);
 

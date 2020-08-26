@@ -36,7 +36,7 @@ namespace ToDo.API.Controllers
         public async Task CriarUsuarioAsync([FromBody] InstituicaoEnsinoDto dto)
         {
             var aggregateId = Guid.NewGuid();
-            await _instituicaoService.CriarAsync(aggregateId, dto.Nome, dto.Cnpj, dto.Telefone, dto.Endereco.Logradouro, dto.Endereco.Numero, dto.Endereco.Bairro, dto.Endereco.Complemento, dto.Ativo);
+            await _instituicaoService.CriarAsync(aggregateId, dto.Nome, dto.Cnpj, dto.Telefone, dto.Endereco.Logradouro, dto.Endereco.Numero, dto.Endereco.Bairro, dto.Endereco.Complemento);
 
             await UnitOfWork.SaveAsync();
         }

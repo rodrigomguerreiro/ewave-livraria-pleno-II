@@ -44,7 +44,7 @@ namespace ToDo.API.Controllers
         [HttpPut("{aggregateId:guid}")]
         public async Task AtualizarAsync(Guid aggregateId, [FromBody] UsuarioDto dto)
         {
-            await _userService.AtualizarAsync(aggregateId, dto.InstituicaoEnsinoId, dto.Nome, dto.Cpf, dto.Telefone, dto.Email);
+            await _userService.AtualizarAsync(aggregateId, dto.InstituicaoEnsinoId, dto.Nome, dto.Cpf, dto.Telefone, dto.Email, dto.Ativo);
 
             await UnitOfWork.SaveAsync();
         }

@@ -36,7 +36,7 @@ namespace ToDo.API.Controllers
         public async Task CriarLivroAsync([FromBody] LivroDto dto)
         {
             var aggregateId = Guid.NewGuid();
-            await _livroService.CriarAsync(aggregateId, dto.Titulo, dto.Sinopse, dto.Capa, dto.AutorId, dto.GeneroId, dto.SituacaoLivroId, dto.Ativo);
+            await _livroService.CriarAsync(aggregateId, dto.Titulo, dto.Sinopse, dto.Capa, dto.AutorId, dto.GeneroId, dto.SituacaoLivroId);
             
             await UnitOfWork.SaveAsync();
         }

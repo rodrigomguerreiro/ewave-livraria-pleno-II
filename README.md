@@ -47,7 +47,7 @@ Obs: As principais funcionalidades da aplicação são:
 ### FrontEnd
 Implementar FrontEnd.
 
-# Siga estes passo para executar o Projeto
+# Siga estes passos para executar o Projeto
 
 Alguns requisitos são necessãrios para executar o projeto:
 - [docker](https://www.docker.com/get-started  "docker") instalado

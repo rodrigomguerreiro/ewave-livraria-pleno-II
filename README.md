@@ -19,7 +19,7 @@ Também foi implementado testes unitários para garantir que as funcionalidades 
 Busquei automatizar o processo de criação de banco de dados e a disponibilização da api através de conteiners do docker.<br/>
 Por limitação de hardware tive que aumentar o sleeptime do arquivo ```/BancoDeDados/entrypoint.sh ``` em 120 segundos, fiquem a vontade para modificar este parâmetro.<br/>
 Infelizmente não consegui implementar a tempo o frontend, a construção da api literalmente consumiu todo tempo.
-- Foram criados testes Unitários somente para usuário(por questões de tempo).
+- Foram criados testes Unitários somente para usuário.
     - Testes unitários de atributos das funções.
     - Testes unitários de regras de negócio com mock(cenários).
 - Exceptions Filters foram criadas, porém não foram aplicadas em todos os casos.
@@ -42,20 +42,39 @@ As principais funcionalidades da aplicação são:
 
 ## Regras Aplicadas
 - Um usuário só poderá emprestar no máximo 2 livros
-- Um empréstimo fica limitado a 30 dias.
-- Se houver um empréstimo em atraso, o usuário fica impossibilitado de fazer novos empréstimos.
+- Um empréstimos são limitados a 30 dias.
+- Se o usuário possuir empréstimo em atraso, fica impossibilitado de fazer novos empréstimos.
+- O Livro emprestado fica indisponível para outros usuários.
+- Ao encerrar um empréstimo, o livro ficará disponível para os usuários.
 
+## Orientações para teste interarivo da API com Swagger
+- Durante o build do projeto, é executado um script sql para popular o banco de dados:
+    - Tabela Endereco: 4 registros.
+    - Tabela InstituicaoEnsino: 2 registros.
+    - Tabela Usuario: 2 registros.
+    - Tabela Autor: 4 registros.
+    - Tabela Genero: 3 registros.
+    - Tabela SituacaoLivro: 2 registros.
+    - Tabela Livro: 4 registros.
+    - Tabela Emprestimo: 1 registro.
+
+- Existem dois usuários cadastrados respectivamente com id(1) e id(2).
+- UsuarioId(1) não possui empréstimo.
+    - Usuário fica limitado a 2 empréstimos.
+
+- UsuarioId(2) possui um empréstimo atrasado com o livroId(1).
+    - Tentar efetuar um novo empréstimo: retorna se usuário possui empréstimo atrasado.
+    - Tentar emprestar o livroId(1) para outro usuário: retorna situação do livro (emprestado).
 
 ## Implementações Futuras
 
 ### Funções
 - Gerenciar reservas(Agendar, reagendar, cancelar reserva)
-- Genrenciar Status de reservas, livros e empréstimos.
+- Genrenciar Status de reservas.
 - Gerar Notificações.
-- Gerar relatórios de empréstimos
+- Gerar relatórios de empréstimos.
 
 ### BackEnd
-- Aplicar Exceptions para o restante dos casos.
 - Aplicar Testes Unitários no restante das funcionalidades.
 
 ### FrontEnd

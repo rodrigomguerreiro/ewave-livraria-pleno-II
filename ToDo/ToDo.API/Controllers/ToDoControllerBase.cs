@@ -5,7 +5,7 @@ using ToDo.Infrastructure.EF.UOW;
 namespace ToDo.API.Controllers
 {
     [AppExceptionFilter]
-    public class ToDoControllerBase : ControllerBase
+    public abstract class ToDoControllerBase : ControllerBase
     {
 
         protected readonly IUnitOfWork UnitOfWork;

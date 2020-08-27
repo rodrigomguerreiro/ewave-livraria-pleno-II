@@ -14,11 +14,11 @@
 - Verifique a Modelagem clicando [aqui](https://dbdesigner.page.link/3ewUebnKJSJX1wCy9).
 
 ## Desafio
-Este desafio realmente me tirou da zona de conforto e também serviu como aprendizado, meu objetivo foi deixar o código limpo e desacoplado, seguindo as boas práticas de patterns como Domain Driven Desgin - DDD.<br/>
+Meu objetivo foi deixar o código limpo e desacoplado, seguindo as boas práticas de patterns como Domain Driven Desgin - DDD.<br/>
 Também foi implementado testes unitários para garantir que as funcionalidades sejam íntegras.<br/>
 Busquei automatizar o processo de criação de banco de dados e a disponibilização da api através de conteiners do docker.<br/>
-Por limitação de hardware tive que aumentar o sleeptime do arquivo ```/BancoDeDados/entrypoint.sh ``` em 120 segundos, fiquem a vontade para modificar este parâmetro.<br/>
-Infelizmente não consegui implementar a tempo o frontend, a construção da api literalmente consumiu todo tempo.
+Por limitação de hardware tive que aumentar o sleep time do arquivo ```/BancoDeDados/entrypoint.sh ``` em 120 segundos, fiquem a vontade para modificar este parâmetro.<br/>
+Infelizmente não consegui implementar a tempo o frontend.
 - Foram criados testes Unitários somente para usuário.
     - Testes unitários de atributos das funções.
     - Testes unitários de regras de negócio com mock(cenários).
@@ -28,7 +28,7 @@ Infelizmente não consegui implementar a tempo o frontend, a construção da api
 ## Funcionalidades
 As principais funcionalidades da aplicação são: 
 - Gerenciar empréstimos de livros.
-    - Criar Empréstimo
+    - Incluir Empréstimo
     - Encerrar Empréstimo
     
 - Gerenciar  usuário.
@@ -65,6 +65,11 @@ As principais funcionalidades da aplicação são:
 - UsuarioId(2) possui um empréstimo atrasado com o livroId(1).
     - Tentar efetuar um novo empréstimo: retorna se usuário possui empréstimo atrasado.
     - Tentar emprestar o livroId(1) para outro usuário: retorna situação do livro (emprestado).
+
+- É preciso registrar um autor, genero e situação do livro para registrar um livro.
+- É preciso registrar uma instituiçao de ensino para registrar um usuário.
+- É preciso um usuário para registrar o endereço.
+- É preciso um usuário e um livro para incluir um empréstimo.
 
 ## Implementações Futuras
 

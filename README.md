@@ -19,10 +19,11 @@ Também foi implementado testes unitários para garantir que as funcionalidades 
 Busquei automatizar o processo de criação de banco de dados e a disponibilização da api através de conteiners do docker.<br/>
 Por limitação de hardware tive que aumentar o sleep time do arquivo ```/BancoDeDados/entrypoint.sh ``` em 120 segundos, fiquem a vontade para modificar este parâmetro.<br/>
 Infelizmente não consegui implementar a tempo o frontend.
+
 - Foram criados testes Unitários somente para usuário.
     - Testes unitários de atributos das funções.
     - Testes unitários de regras de negócio com mock(cenários).
-- Exceptions Filters foram criadas, porém não foram aplicadas em todos os casos.
+- Exceptions Filters.
 
 
 ## Funcionalidades

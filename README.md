@@ -42,7 +42,7 @@ As principais funcionalidades da aplicação são:
 
 ## Regras Aplicadas
 - Um usuário só poderá emprestar no máximo 2 livros
-- Um empréstimos são limitados a 30 dias.
+- Empréstimos são limitados a 30 dias.
 - Se o usuário possuir empréstimo em atraso, fica impossibilitado de fazer novos empréstimos.
 - O Livro emprestado fica indisponível para outros usuários.
 - Ao encerrar um empréstimo, o livro ficará disponível para os usuários.

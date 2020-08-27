@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToDo.Domain.Entities;
+using ToDo.Domain.Exceptions;
 using ToDo.Domain.Repositories;
 using ToDo.Domain.Services;
 using ToDo.Infrastructure.Extensions;
@@ -21,6 +22,12 @@ namespace ToDo.Application.Services
         {
             if (aggregateId == Guid.Empty) throw new ArgumentNullException(nameof(aggregateId));
             if (nome.IsNull()) throw new ArgumentNullException(nameof(nome));
+            if (cnpj.IsNull()) throw new ArgumentNullException(nameof(cnpj));
+            if (telefone.IsNull()) throw new ArgumentNullException(nameof(telefone));
+            if (logradouro.IsNull()) throw new ArgumentNullException(nameof(logradouro));
+            if (numero.IsNull()) throw new ArgumentNullException(nameof(numero));
+            if (bairro.IsNull()) throw new ArgumentNullException(nameof(bairro));
+            if (complemento.IsNull()) throw new ArgumentNullException(nameof(complemento));
 
             var instituicao = new InstituicaoEnsino
             {
@@ -43,18 +50,25 @@ namespace ToDo.Application.Services
 
         public async Task AtualizarAsync(Guid aggregateId, string nome, string cnpj, string telefone, string logradouro, int numero, string bairro, string complemento, bool ativo)
         {
-            if (aggregateId == Guid.Empty) throw new ArgumentNullException(nameof(aggregateId));
             var instituicao = await _instituicaoRepository.GetByAggregateIdAsync(aggregateId);
+            if (instituicao.IsNull()) throw new InstituicaoEnsinoNaoEncontradaException();
+            if (nome.IsNull()) throw new ArgumentNullException(nameof(nome));
+            if (cnpj.IsNull()) throw new ArgumentNullException(nameof(cnpj));
+            if (telefone.IsNull()) throw new ArgumentNullException(nameof(telefone));
+            if (logradouro.IsNull()) throw new ArgumentNullException(nameof(logradouro));
+            if (numero.IsNull()) throw new ArgumentNullException(nameof(numero));
+            if (bairro.IsNull()) throw new ArgumentNullException(nameof(bairro));
+            if (complemento.IsNull()) throw new ArgumentNullException(nameof(complemento));
 
-            if (instituicao.IsNull()) throw new Exception("Instituição não encontrado.");
             instituicao.Nome = nome;
             instituicao.Cnpj = cnpj;
             instituicao.Telefone = telefone;
-            instituicao.Ativo = ativo;
             instituicao.Endereco.Logradouro = logradouro;
+            instituicao.Endereco.Numero = numero;
             instituicao.Endereco.Bairro = bairro;
             instituicao.Endereco.Complemento = complemento;
-            instituicao.Endereco.Numero = numero;
+            instituicao.Ativo = ativo;
+            
 
             await _instituicaoRepository.UpdateAsync(instituicao);
         }

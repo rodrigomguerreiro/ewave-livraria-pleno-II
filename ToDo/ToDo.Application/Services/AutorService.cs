@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToDo.Domain.Entities;
+using ToDo.Domain.Exceptions;
 using ToDo.Domain.Repositories;
 using ToDo.Domain.Services;
 using ToDo.Infrastructure.Extensions;
@@ -36,9 +37,11 @@ namespace ToDo.Application.Services
         public async Task AtualizarAsync(Guid aggregateId, string nome, bool ativo)
         {
             if (aggregateId == Guid.Empty) throw new ArgumentNullException(nameof(aggregateId));
-            var autor = await _autorRepository.GetByAggregateIdAsync(aggregateId);
+            if (nome.IsNull()) throw new ArgumentNullException(nameof(nome));
 
-            if (autor.IsNull()) throw new Exception("Autor não encontrado.");
+            var autor = await _autorRepository.GetByAggregateIdAsync(aggregateId);
+            if (autor.IsNull()) throw new AutorNaoEncontradoException();
+
             autor.Nome = nome;
             autor.Ativo = ativo;
 

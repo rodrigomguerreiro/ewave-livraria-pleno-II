@@ -26,6 +26,10 @@ namespace ToDo.Application.Services
             if (livroId.IsLessZero()) throw new ArgumentNullException(nameof(livroId));
             if (usuarioId.IsLessZero()) throw new ArgumentNullException(nameof(usuarioId));
 
+            var livro = await _livroRepository.GetByAsync(livroId);
+            if (livro.IsNull()) throw new LivroNaoEncontradoException();
+            if (livro.SituacaoLivroId == 1) throw new LivroEmprestadoException();
+
             var possueEmprestimosAtrasados = await _emprestimoRepository.PossuiEmprestimoAtrasadoPorUsuarioAsync(usuarioId);
             if (possueEmprestimosAtrasados) throw new EmprestimoAtrasadoException();
 
@@ -43,7 +47,6 @@ namespace ToDo.Application.Services
                 LivroId = livroId
             };
 
-            var livro = await _livroRepository.GetByAsync(livroId);
             livro.SituacaoLivroId = 1;
             await _livroRepository.UpdateAsync(livro);
 
@@ -53,7 +56,15 @@ namespace ToDo.Application.Services
         public async Task EncerrarAsync(Guid aggregateId)
         {
             if (aggregateId == Guid.Empty) throw new ArgumentNullException(nameof(aggregateId));
+
             var emprestimo = await _emprestimoRepository.GetByAggregateIdAsync(aggregateId);
+            if (emprestimo.IsNull()) throw new EmprestimoNaoEncontradoException();
+
+            var livro = await _livroRepository.GetByAsync(emprestimo.LivroId);
+            if (livro.IsNull()) throw new LivroNaoEncontradoException();
+
+            livro.SituacaoLivroId = 2;
+            await _livroRepository.UpdateAsync(livro);
 
             emprestimo.DataDevolucao = DateTime.Now;
 

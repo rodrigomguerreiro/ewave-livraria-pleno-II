@@ -85,8 +85,15 @@ namespace ToDo.Application.Services
         public async Task InformarEndereco(Guid aggregateId, string logradouro, string bairro, string complemento, int numero)
         {
             if (aggregateId == Guid.Empty) throw new ArgumentNullException(nameof(aggregateId));
+            if (logradouro.IsNull()) throw new ArgumentNullException(nameof(logradouro));
+            if (bairro.IsNull()) throw new ArgumentNullException(nameof(bairro));
+            if (complemento.IsNull()) throw new ArgumentNullException(nameof(complemento));
+            if (numero.IsNull()) throw new ArgumentNullException(nameof(numero));
+
 
             var usuario = await _userRepository.GetByAggregateIdAsync(aggregateId);
+            if (usuario.IsNull()) throw new UsuarioNaoEncontradoException();
+
             if (usuario.Endereco.IsNull())
             {
                 usuario.Endereco = new Endereco

@@ -11,6 +11,6 @@ namespace ToDo.Domain.Exceptions
 
     public class LivroEmprestadoException : ExceptionBase
     {
-        public LivroEmprestadoException() : base("Livro está emprestado.") { }
+        public LivroEmprestadoException() : base("Este Livro está emprestado.") { }
     } 
 }

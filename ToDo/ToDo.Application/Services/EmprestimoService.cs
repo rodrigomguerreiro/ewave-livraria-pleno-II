@@ -26,12 +26,12 @@ namespace ToDo.Application.Services
             if (livroId.IsLessZero()) throw new ArgumentNullException(nameof(livroId));
             if (usuarioId.IsLessZero()) throw new ArgumentNullException(nameof(usuarioId));
 
+            var possueEmprestimosAtrasados = await _emprestimoRepository.PossuiEmprestimoAtrasadoPorUsuarioAsync(usuarioId);
+            if (possueEmprestimosAtrasados) throw new EmprestimoAtrasadoException();
+
             var livro = await _livroRepository.GetByAsync(livroId);
             if (livro.IsNull()) throw new LivroNaoEncontradoException();
             if (livro.SituacaoLivroId == 1) throw new LivroEmprestadoException();
-
-            var possueEmprestimosAtrasados = await _emprestimoRepository.PossuiEmprestimoAtrasadoPorUsuarioAsync(usuarioId);
-            if (possueEmprestimosAtrasados) throw new EmprestimoAtrasadoException();
 
             var qtdEmprestimosAtivos = await _emprestimoRepository.GetEmprestimosAtivosPorUsuarioAsync(usuarioId);
             if (qtdEmprestimosAtivos >= 2) throw new LimiteEmprestimoException();

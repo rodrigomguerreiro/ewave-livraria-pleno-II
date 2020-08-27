@@ -12,7 +12,7 @@ namespace ToDo.Domain.Exceptions
 
     public class EmprestimoAtrasadoException : ExceptionBase
     {
-        public EmprestimoAtrasadoException() : base("Usuário com empréstimo está atrasado.") { }
+        public EmprestimoAtrasadoException() : base("Usuário com empréstimo atrasado.") { }
 
     }
 
